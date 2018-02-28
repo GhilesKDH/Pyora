@@ -563,8 +563,9 @@ class Main(Checks):
         address = a.address
         database = a.database
         port = a.port
-        self.db = cx_Oracle.connect("{0}/{1}@{2}:{3}/{4}".format(
-            username, password, address, port, database))
+	#Edit by Ghiles.KH to use SID instead of SERVICE_NAME
+	dsnStr = cx_Oracle.makedsn(address, port, database)
+	self.db = cx_Oracle.connect(user=username, password=password, dsn=dsnStr)
         self.cur = self.db.cursor()
 
     def db_close(self):
