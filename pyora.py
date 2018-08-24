@@ -563,7 +563,6 @@ class Main(Checks):
         address = a.address
         database = a.database
         port = a.port
-	#Edit by Ghiles.KH to use SID instead of SERVICE_NAME
 	dsnStr = cx_Oracle.makedsn(address, port, database)
 	self.db = cx_Oracle.connect(user=username, password=password, dsn=dsnStr)
         self.cur = self.db.cursor()
